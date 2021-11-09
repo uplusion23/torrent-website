@@ -44,17 +44,23 @@ const Authentication = props => {
     e.preventDefault();
     if (isLogin) {
       UserService.authenticate(username, password).then(response => {
-        alert("You've signed in as " + response.username);
+        props.setAccount(response);
         console.log(response);
       }).catch(err => {
-        alert("Error signing in\n" + err);
+        props.showAlert("error", "Error signing in.");
+        console.warn(err);
       });
     } else {
+      if (password !== confirmPassword) {
+        props.showAlert("error", "Passwords do not match.");
+        return;
+      }
       UserService.register(username, password, confirmPassword).then(response => {
-        alert("You've registerred in as " + response.username);
+        props.showAlert("success", "Account created with username " + username);
         console.log(response);
       }).catch(err => {
-        alert("Error signing up\n" + err);
+        props.showAlert("error", "Error signing up.");
+        console.warn(err);
       });
     }
   }
@@ -62,7 +68,7 @@ const Authentication = props => {
   useEffect(() => {
     if (props.isAuthenticated) props.cancel(true);
     if (props.register) setIsLogin(false);
-  }, []);
+  }, [props]);
 
   return (
     <AnimatePresence>
@@ -85,7 +91,7 @@ const Authentication = props => {
             {
               isLogin ? "Not a member? " : "Already a member? "
             }
-            <a href="#" onClick={toggleType}>{isLogin ? "Sign up" : "Log in"}</a>
+            <a href="#login" onClick={toggleType}>{isLogin ? "Sign up" : "Log in"}</a>
           </motion.span>
           <motion.div
             variants={item}

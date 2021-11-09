@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import './Background.css';
 
 const Background = props => {
@@ -6,11 +5,11 @@ const Background = props => {
   const imageFormats = ['.jpg','.jpeg','.png','.gif','.bmp','.svg'];
 
   const renderBackground = () => {
-    if (imageFormats.some(ext => props.background.includes(ext))) {
+    if (imageFormats.some(ext => props.background.includes(props.type || ext))) {
       return (
         <div className="background-image" style={{backgroundImage: `url(${props.background})`}}></div>
       );
-    } else if (videoFormats.some(ext => props.background.includes(ext))) {
+    } else if (videoFormats.some(ext => props.background.includes(props.type || ext))) {
       return (
         <video className="background-video" autoPlay loop muted>
           <source src={props.background} type="video/mp4" />
@@ -25,7 +24,11 @@ const Background = props => {
 
   return (
     <div className="background">
-      {renderBackground()}
+      {
+        !props.color ? renderBackground() : (
+          <div className="background-color" style={{backgroundColor: props.color}}></div>
+        )
+      }
     </div>
   )
 }

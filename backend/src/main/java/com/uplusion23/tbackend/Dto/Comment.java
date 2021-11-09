@@ -110,7 +110,7 @@ public class Comment {
     }
 
     public Long getAuthorID() {
-        return user.getId();
+        return authorID;
     }
 
     public void setAuthorID(Long authorID) {

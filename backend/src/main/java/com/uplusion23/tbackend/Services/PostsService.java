@@ -20,12 +20,12 @@ public class PostsService {
     @Autowired
     private PostsRepository postsRepository;
 
-    public Iterable<Post> getPosts(Integer pageNumber, Integer pageSize, String sortBy) {
-        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
-        Page<Post> pageResult = postsRepository.findAll(paging);
+    public Iterable<Post> getPosts(Pageable pageable) {
+        return this.postsRepository.findAll(pageable);
+    }
 
-        if (pageResult.hasContent()) return pageResult.getContent();
-        else return new ArrayList<Post>();
+    public Iterable<Post> searchPosts(String query, Pageable pageable) {
+        return this.postsRepository.findByTitleContaining(query, pageable);
     }
 
     public Post savePost(Post post) {

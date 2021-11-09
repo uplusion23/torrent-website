@@ -25,6 +25,22 @@
   text-shadow: 1px solid black;
 }
 
-.navigation > span.push {
+.navigation > span.push,
+.navigation > span.username {
   margin-left: auto;
+}
+
+.navigation > span.username {
+  color: rgb(var(--color-secondary));
+}
+
+.navigation > .logo {
+  display: block;
+  position: relative;
+  font-family: 'Cloister Black', serif;
+  font-weight: 100;
+  font-size: 1.9rem;
+  margin: 0 60px 0 0;
+  user-select: none;
+  cursor: pointer;
 }

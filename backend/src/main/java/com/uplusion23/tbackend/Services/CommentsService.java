@@ -28,14 +28,6 @@ public class CommentsService {
     @Autowired
     private PostsRepository postsRepository;
 
-    public Iterable<Comment> getComments(Long postId, Integer pageNumber, Integer pageSize, String sortBy) {
-        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
-        Page<Comment> pageResult = commentsRepository.findByPostId(postId, paging);
-
-        if (pageResult.hasContent()) return pageResult.getContent();
-        else return new ArrayList<Comment>();
-    }
-
     public Comment getComment(Long id) {
         return this.commentsRepository.findById(id).get();
     }

@@ -5,6 +5,7 @@ import com.uplusion23.tbackend.Dto.Post;
 import com.uplusion23.tbackend.Services.PostsService;
 import com.uplusion23.tbackend.Utilities.Response;
 import com.uplusion23.tbackend.Utilities.ResponseTypes;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,11 +19,15 @@ public class PostsController {
     }
 
     @GetMapping("/posts")
-    public ResponseEntity<Iterable<Post>> getPosts(
-            @RequestParam(defaultValue = "0") Integer pageNumber,
-            @RequestParam(defaultValue = "30") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy) {
-        Iterable<Post> posts = postsService.getPosts(pageNumber, pageSize, sortBy);
+    public ResponseEntity<Iterable<Post>> getPosts(Pageable pageable) {
+        Iterable<Post> posts = postsService.getPosts(pageable);
+
+        return new ResponseEntity<Iterable<Post>>(posts, null, 200);
+    }
+
+    @GetMapping("/posts/search")
+    public ResponseEntity<Iterable<Post>> searchPosts(@RequestParam String query, Pageable pageable) {
+        Iterable<Post> posts = postsService.searchPosts(query, pageable);
 
         return new ResponseEntity<Iterable<Post>>(posts, null, 200);
     }

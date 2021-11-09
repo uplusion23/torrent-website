@@ -1,5 +1,7 @@
+import BaseService from './BaseService';
+
 const UserService = {
-  baseUrl: 'http://localhost:8080/user',
+  baseUrl: BaseService.endpoint + '/user',
   authenticate: (username, password) => {
     return new Promise((resolve, reject) => {
       fetch(`${UserService.baseUrl}/login`, {
