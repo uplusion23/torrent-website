@@ -7,8 +7,12 @@ const Navigation = props => {
       <span>Trending</span>
       <span>New</span>
       <span>Upload</span>
-      <span className="push">Register</span>
-      <span>Login</span>
+      <span
+        onClick={e => props.authenticate(e, true)}
+        className="push">Register</span>
+      <span
+        onClick={e => props.authenticate(e, false)}
+        >Login</span>
     </nav>
   )
 }

@@ -18,7 +18,7 @@ public class User {
     private String username;
 
     @NotNull
-    @JsonIgnore
+    // Add json view
     private String password;
 
     private LocalDate created;

@@ -8,7 +8,7 @@
   background: linear-gradient(80deg, rgba(var(--background-color-accent),1) 40%, rgba(var(--background-color-accent),0.3) 100%);
   grid-template-rows: var(--nav-height) minmax(0, 1fr);
   box-sizing: border-box;
-  padding: var(--safe-zone);
+  padding: var(--safe-zone) calc(var(--safe-zone) * 2);
 }
 
 .authentication > .header {
@@ -39,4 +39,125 @@
 .authentication > .header > span {
   font-size: 2rem;
   font-family: 'Cloister Black', serif;
+}
+
+.authentication > .content {
+  display: flex;
+  position: relative;
+  width: 550px;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.authentication > .content > h1,
+.authentication > .content > h4 {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.authentication > .content > h1 i,
+.authentication > .content > h4 i {
+  color: rgb(var(--color-accent));
+}
+
+.authentication > .content > h1 {
+  font-size: 4rem;
+  margin: 15px 0;
+  white-space: nowrap;
+}
+
+.authentication > .content > h4 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: rgb(var(--color-secondary));
+}
+
+.authentication > .content > span {
+  font-size: 0.9rem;
+  color: rgb(var(--color-secondary));
+}
+
+.authentication > .content a {
+  text-decoration: none;
+  color: rgb(var(--color-accent));
+  cursor: pointer;
+}
+
+.authentication > .content > .group {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  margin: 20px 0 0 0;
+  background-color: rgb(var(--background-color-accent-light));
+  border-radius: var(--border-radius);
+}
+
+.authentication > .content > .group.buttons {
+  display: grid;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  margin: 20px 0 0 0;
+  background-color: transparent;
+  border-radius: 0px;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.authentication > .content > .group > input[type="text"],
+.authentication > .content > .group > input[type="password"] {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  margin: 0;
+  outline: none;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 1.3rem;
+  color: rgb(var(--color-priamry));
+}
+
+.authentication > .content > .group > span {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 22px;
+  color: rgb(var(--color-secondary));
+  pointer-events: none;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  transition: all 0.1s ease;
+  transform: translateY(-50%);
+}
+
+.authentication > .content > .group > input[type="text"]:focus ~ span,
+.authentication > .content > .group > input[type="password"]:focus ~ span,
+.authentication > .content > .group > input[type="text"]:not(:focus):valid ~ span,
+.authentication > .content > .group > input[type="password"]:not(:focus):valid ~ span {
+  top: 4px;
+  transform: translateY(0);
+}
+
+.authentication > .content button {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  margin: 20px 0 0 0;
+  background-color: rgb(var(--background-color-accent-lighter));
+  color: rgb(var(--color-primary));
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.authentication > .content button.primary {
+  background-color: rgb(var(--color-accent));
 }

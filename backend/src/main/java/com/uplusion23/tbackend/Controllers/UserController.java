@@ -26,8 +26,21 @@ public class UserController {
         return new ResponseEntity<>(Response.get(ResponseTypes.SUCCESS, userService.getUserByID(id)), null, 200);
     }
 
-    @PostMapping("")
+    @PostMapping("/register")
     public ResponseEntity<Object> addUser(@Valid @RequestBody User user) {
-        return new ResponseEntity<>(Response.get(ResponseTypes.SUCCESS, userService.registerUser(user)), null, 200);
+        Object response = userService.registerUser(user);
+        if (response instanceof String) {
+            return new ResponseEntity<>(Response.get(ResponseTypes.ERROR, response), null, 200);
+        }
+        return new ResponseEntity<>(Response.get(ResponseTypes.SUCCESS, response), null, 200);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Object> authenticateUser(@Valid @RequestBody User user) {
+        Object response = userService.authenticateUser(user.getUsername(), user.getPassword());
+        if (response instanceof String) {
+            return new ResponseEntity<>(Response.get(ResponseTypes.ERROR, response), null, 200);
+        }
+        return new ResponseEntity<>(Response.get(ResponseTypes.SUCCESS, response), null, 200);
     }
 }

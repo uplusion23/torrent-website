@@ -7,9 +7,11 @@
   --background-color: 13, 14, 20;
   --background-color-accent: 40, 42, 56;
   --background-color-accent-light: 49, 54, 70;
+  --background-color-accent-lighter: 83, 91, 106;
   
   --color-primary: 240, 240, 250;
   --color-secondary: 154, 165,  184;
+  --color-accent: 0, 144, 252;
 
   --nav-height: 90px;
   --border-radius: 6px;

@@ -21,7 +21,6 @@ public class UserService {
         if (this.userExists(userAccount.getUsername())) {
             return "User already exists";
         }
-        System.out.println(userAccount.toString());
         final User user = new User();
         user.setUsername(userAccount.getUsername());
         user.setPassword(this.bCryptPasswordEncoder.encode(userAccount.getPassword()));
