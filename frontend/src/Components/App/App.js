@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <Background
-        background="https://images.unsplash.com/photo-1470115209269-18dd2d7285cd"
+        background="https://images.unsplash.com/photo-1503942142281-94af0aded523"
         color={
           searchResults ? "#000" : null
         }

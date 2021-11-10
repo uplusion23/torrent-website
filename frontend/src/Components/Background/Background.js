@@ -17,7 +17,7 @@ const Background = props => {
       );
     } else {
       return (
-        <div className="background-image" style={{backgroundImage: `url('https://images.unsplash.com/photo-1503942142281-94af0aded523')`}} />
+        <div className="background-image" style={{backgroundImage: `url('${props.background}')`}} />
       )
     }
   }
