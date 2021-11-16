@@ -41,7 +41,7 @@ public class Comment {
     private Long authorID;
 
     @Column(name = "post_id", insertable = false, updatable = false)
-    private Long PostID;
+    private Long postID;
 
     public Comment() {}
 
@@ -122,7 +122,7 @@ public class Comment {
     }
 
     public void setPostID(Long postID) {
-        PostID = postID;
+        postID = postID;
     }
 
     @Override

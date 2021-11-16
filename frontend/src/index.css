@@ -11,7 +11,7 @@
   
   --color-primary: 240, 240, 250;
   --color-secondary: 154, 165,  184;
-  --color-accent: 0, 144, 252;
+  --color-accent: 1, 156, 175;
   --color-green: 0, 219, 103;
   --color-red: 253, 0, 69;
 
@@ -41,4 +41,5 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }

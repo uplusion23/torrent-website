@@ -8,9 +8,21 @@ const Navigation = props => {
           onClick={() => props.setSearchResults(null)}
           className="logo">Kracken Torrents</div>
       }
-      <span>Top 100</span>
-      <span>Trending</span>
-      <span>New</span>
+      <span onClick={() => {
+        props.listHandler({
+          sort: 'seeders,DESC'
+        });
+      }}>Top</span>
+      <span onClick={() => {
+        props.listHandler({
+          sort: 'leechers,DESC'
+        });
+      }}>Popular</span>
+      <span onClick={() => {
+        props.listHandler({
+          sort: 'published'
+        });
+      }}>New</span>
       {
         props.account !== null ? (
           <>

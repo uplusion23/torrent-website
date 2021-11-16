@@ -16,14 +16,18 @@ const Landing = props => {
   const searchHandler = e => {
     e.preventDefault();
     setSearchTerm(e.target.value);
-    console.log(e)
     if (e.key === 'Enter') {
-      props.searchHandler(searchTerm);
+      props.searchHandler({
+        query: searchTerm
+      }, 'search');
     }
   }
 
   useEffect(() => {
-    setPlaceholder(placeholderStrings[0]);
+    const interval = setInterval(() => {
+      setPlaceholder(placeholderStrings[Math.floor(Math.random() * placeholderStrings.length)]);
+    }, 1500);
+    return () => clearInterval(interval);
   }, [])
 
   return (

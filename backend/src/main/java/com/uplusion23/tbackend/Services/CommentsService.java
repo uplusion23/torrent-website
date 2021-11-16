@@ -40,8 +40,6 @@ public class CommentsService {
         Post post = postsRepository.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
         User user = userRepository.findById(comment.getAuthorID()).orElseThrow(() -> new RuntimeException("User not found"));
 
-        System.out.println("user = " + user);
-
         final Comment commentObject = new Comment();
         commentObject.setTitle(comment.getTitle());
         commentObject.setContent(comment.getContent());

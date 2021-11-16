@@ -41,6 +41,22 @@ const UserService = {
         reject(error);
       });
     });
+  },
+  getUserById: (id) => {
+    return new Promise((resolve, reject) => {
+      fetch(`${UserService.baseUrl}/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(response => {
+        response.response === "error" ? reject(response.data) : resolve(response.data);
+      }).catch(error => {
+        reject(error);
+      });
+    });
   }
 }
 

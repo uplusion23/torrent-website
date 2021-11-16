@@ -26,9 +26,9 @@ public class PostsController {
     }
 
     @GetMapping("/posts/search")
-    public ResponseEntity<Iterable<Post>> searchPosts(@RequestParam String query, Pageable pageable) {
+    public Object searchPosts(@RequestParam String query, Pageable pageable) {
         Iterable<Post> posts = postsService.searchPosts(query, pageable);
-
+        if (posts == null) return new ResponseEntity<>(Response.get(ResponseTypes.ERROR, "Unknown search type"), null, 400);
         return new ResponseEntity<Iterable<Post>>(posts, null, 200);
     }
 
@@ -36,6 +36,15 @@ public class PostsController {
     public ResponseEntity<Object> createNewPost(@Valid @RequestBody Post post) {
         try {
             return new ResponseEntity<>(Response.get(ResponseTypes.SUCCESS, this.postsService.savePost(post)), null, 200);
+        } catch (Exception e) {
+            return new ResponseEntity<>(Response.get(ResponseTypes.ERROR, e.getMessage()), null, 400);
+        }
+    }
+
+    @PatchMapping("/posts/{id}")
+    public ResponseEntity<Object> updatePost(@PathVariable Long id, @RequestBody Post post) {
+        try {
+            return new ResponseEntity<>(Response.get(ResponseTypes.SUCCESS, this.postsService.updatePost(id, post)), null, 200);
         } catch (Exception e) {
             return new ResponseEntity<>(Response.get(ResponseTypes.ERROR, e.getMessage()), null, 400);
         }

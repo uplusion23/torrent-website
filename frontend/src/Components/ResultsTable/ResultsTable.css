@@ -1,0 +1,87 @@
+@import url('https://css.gg/software-download.css');
+
+.results-table {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: var(--safe-zone);
+  box-sizing: border-box;
+}
+
+.results-table > .table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.results-table > .table > .tr {
+  display: grid;
+  position: relative;
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
+  margin: 0;
+  padding: 0 20px;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+  background-color: rgba(var(--background-color), 0.02);
+  grid-template-columns: minmax(250px, 2fr) minmax(100px, 0.8fr) minmax(150px, 1fr)  minmax(50px, 0.5fr) minmax(50px, 0.5fr) 50px;
+}
+
+.results-table > .table > .tr:nth-child(even) {
+  background-color: rgba(var(--background-color), 0.07);
+}
+
+.results-table > .table > .tr:first-of-type {
+  background: rgb(var(--background-color));
+  color: rgb(var(--color-primary));
+  font-size: 1rem;
+  user-select: none;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.results-table > .table > .tr:not(:first-of-type) > span {
+  color: rgb(var(--background-color-accent-lighter));
+}
+
+.results-table > .table > .tr:not(:first-of-type) > span:first-of-type {
+  color: rgb(var(--background-color-accent));
+}
+
+.results-table > .table > .tr:not(:first-of-type) > span.seeders {
+  color: rgb(var(--color-accent));
+}
+
+.results-table > .table > .tr:not(:first-of-type) > span.leechers {
+  color: rgb(var(--color-red));
+}
+
+.results-table > .table > .tr:not(:first-of-type) > span.link {
+  display: block;
+  text-align: center;
+}
+
+.results-table > .table > .tr:not(:first-of-type) > span.link > a {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: rgb(var(--color-accent));
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  --ggs: 1.2;
+}

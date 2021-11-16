@@ -1,6 +1,9 @@
 package com.uplusion23.tbackend.Dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.uplusion23.tbackend.Views.UserView;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,7 +21,6 @@ public class User {
     private String username;
 
     @NotNull
-    // Add json view
     private String password;
 
     private LocalDate created;
@@ -42,6 +44,8 @@ public class User {
         this.username = username;
     }
 
+    @JsonIgnore
+    @JsonProperty(value = "user_password")
     public String getPassword() {
         return password;
     }

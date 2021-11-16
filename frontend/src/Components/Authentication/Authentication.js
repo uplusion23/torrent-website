@@ -47,7 +47,7 @@ const Authentication = props => {
         props.setAccount(response);
         console.log(response);
       }).catch(err => {
-        props.showAlert("error", "Error signing in.");
+        props.showAlert("error", err);
         console.warn(err);
       });
     } else {

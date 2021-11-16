@@ -1,5 +1,8 @@
 package com.uplusion23.tbackend.Dto;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -21,13 +24,18 @@ public class Post {
     @NotNull
     private String link;
 
-    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private User user;
+
+    @Column(name = "user_id", insertable = false, updatable = false)
     private Long authorID;
 
     private LocalDate published;
     private LocalDate updated;
-    private Long views = 0L;
-    private Long likes = 0L;
+    private Long seeders = 0L;
+    private Long leechers = 0L;
 
     public Post() {}
 
@@ -87,19 +95,27 @@ public class Post {
         this.updated = updated;
     }
 
-    public Long getViews() {
-        return views;
+    public Long getSeeders() {
+        return seeders;
     }
 
-    public void setViews(Long views) {
-        this.views = views;
+    public void setSeeders(Long seeders) {
+        this.seeders = seeders;
     }
 
-    public Long getLikes() {
-        return likes;
+    public Long getLeechers() {
+        return leechers;
     }
 
-    public void setLikes(Long likes) {
-        this.likes = likes;
+    public void setLeechers(Long leachers) {
+        this.leechers = leachers;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
