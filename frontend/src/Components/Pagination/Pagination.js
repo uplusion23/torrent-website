@@ -8,11 +8,8 @@ export const Pagination = props => {
     props.handleQueryPaged(e.target.getAttribute('data-page'));
   }
 
-  for (let i = 1; i <= props.page.totalPages; i++) {
-    // make active page active
-    if (i === 1 && props.page.pageNumber !== 1) pages.push(<button key={i} onClick={onPageButtonClick} data-page={i} data-active={props.page.pageNumber === i}>First</button>);
-    else if (i === props.page.totalPages) pages.push(<button key={i} onClick={onPageButtonClick} data-page={i} data-active={props.page.pageNumber === i}>Last</button>);
-    else pages.push(<button key={i} onClick={onPageButtonClick} data-page={i} data-active={props.page.pageNumber === i}>{i}</button>);
+  for (let i = 0; i < props.page.totalPages; i++) {
+    pages.push(<button key={i} onClick={onPageButtonClick} data-page={i} data-active={(props.page.pageNumber+1) === i}>{(i+1)}</button>);
   }
 
   return (

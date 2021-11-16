@@ -18,8 +18,9 @@ const Landing = props => {
     setSearchTerm(e.target.value);
     if (e.key === 'Enter') {
       props.searchHandler({
-        query: searchTerm
-      }, 'search');
+        query: searchTerm,
+        type: 'search'
+      });
     }
   }
 

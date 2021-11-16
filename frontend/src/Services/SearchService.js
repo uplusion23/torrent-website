@@ -14,6 +14,7 @@ const SearchService = {
         }
       }).then(response => response.json())
       .then(response => {
+        console.log(response);
         resolve(response);
       }).catch(error => {
         reject(error);

@@ -26,7 +26,9 @@ const Navigation = props => {
       {
         props.account !== null ? (
           <>
-            <span>Upload</span>
+            <span
+              className="primary"
+              onClick={() => props.setIsModalShown(true)}>Upload</span>
             <span className="username">{props.account.username}</span>
           </>
         ) : (

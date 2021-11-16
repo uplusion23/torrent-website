@@ -7,6 +7,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import SearchService from '../../Services/SearchService';
 import { Results } from '../Results/Results';
+import { CreateModal } from '../CreateModal/CreateModal';
 
 function App() {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
@@ -16,21 +17,23 @@ function App() {
   const [searchResults, setSearchResults] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [query, setQuery] = useState({});
+  const [isModalShown, setIsModalShown] = useState(false);
 
   const handleQuery = ({
     query = '',
     page = 0,
     size = 10,
-    sort = ''
-  } = {}, type = '') => {
+    sort = '',
+    type = ''
+  } = {}) => {
     setQuery({
       query, page, size, sort, type
     });
     SearchService.getPosts({query, page, size, sort}, type).then(response => {
       if (type === 'search') {
         setSearchTerm({
-          text: "Search results for ",
-          searchTerm: `"${query}"`
+          text: `${(query !== '') ? 'Search results for ' : 'No query provided'}`,
+          searchTerm: `${(query !== '') ? "\"" + query + "\"" : ''}`
         });
       } else {
         setSearchTerm({
@@ -43,6 +46,7 @@ function App() {
   }
 
   const handleQueryPaged = page => {
+    console.log(query);
     handleQuery({
       ...query,
       page
@@ -74,7 +78,7 @@ function App() {
         isLoggingIn && account === null ? (
           <Authentication
             register={register}
-            showAlert={(type, message) => addAlert(type, message)}
+            showAlert={addAlert}
             setAccount={setAccount}
             cancel={val => setIsLoggingIn(!val)} />
         ) : (
@@ -84,6 +88,7 @@ function App() {
               listHandler={handleQuery}
               setSearchResults={setSearchResults}
               showLogo={searchResults ? true : false}
+              setIsModalShown={setIsModalShown}
               authenticate={handleAuthenticationClick} />
             {
               searchResults ? (
@@ -93,7 +98,7 @@ function App() {
                     size: searchResults.size,
                     totalPages: searchResults.totalPages,
                     totalElements: searchResults.totalElements,
-                    pageNumber: searchResults.number + 1,
+                    pageNumber: searchResults.number - 1,
                     first: searchResults.first,
                     last: searchResults.last,
                     empty: searchResults.empty
@@ -109,6 +114,12 @@ function App() {
         )
       }
       <Alert setAlerts={arr => setAlerts(arr)} alerts={alerts} />
+      {
+        isModalShown && <CreateModal
+          showAlert={addAlert}
+          account={account}
+          setIsModalShown={setIsModalShown} />
+      }
     </div>
   );
 }

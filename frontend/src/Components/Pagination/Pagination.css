@@ -1,0 +1,38 @@
+.pagination {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pagination > button {
+  display: block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: none;
+  color: rgb(var(--background-color));
+  background: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  font-family: 'Kallio', sans-serif;
+}
+
+.pagination > button[data-active="true"] {
+  color: rgb(var(--color-accent));
+  pointer-events: none;
+}
+
+.pagination > button[data-active="true"]::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 60%;
+  height: 2px;
+  transform: translateX(-50%);
+  background-color: rgb(var(--color-accent));
+}

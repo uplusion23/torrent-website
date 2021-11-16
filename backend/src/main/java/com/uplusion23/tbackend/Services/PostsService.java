@@ -30,7 +30,17 @@ public class PostsService {
         }
     }
 
-    public Post savePost(Post post) {
+    public Post savePost(Post post) throws Exception {
+        if (
+                post.getTitle().isEmpty() ||
+                post.getDescription().isEmpty() ||
+                post.getAuthorID() == 0 ||
+                post.getLink().isEmpty()
+        ) throw new Exception("Invalid format");
+
+        if (!userRepository.findById(post.getAuthorID()).isPresent()) {
+            throw new Exception("User not found, unable to submit post.");
+        }
         final Post postObject = new Post();
         postObject.setTitle(post.getTitle());
         postObject.setDescription(post.getDescription());

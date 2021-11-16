@@ -21,7 +21,7 @@ export const ResultsTable = props => {
                 <span>{result.user.username}</span>
                 <span className="seeders">{result.seeders}</span>
                 <span className="leechers">{result.leechers}</span>
-                <span className="link"><a href={result.link}><i className="gg-software-download"></i></a></span>
+                <span className="link"><a href={result.link}><i className="gg-magnet"></i></a></span>
               </div>
             )
           })

@@ -8,6 +8,7 @@
   box-sizing: border-box;
   padding: 10px 25px;
   flex-direction: column;
+  z-index: 100;
 }
 
 .alerts-container > .alert {
